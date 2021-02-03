@@ -6,7 +6,7 @@ public class Items {
 	private Long itemPrice;
 
 	public  Items(String item_name, Long itemPrice) {
-		this.setitemName(itemName);
+		this.setitemName(item_name);
 		this.setitemPrice(itemPrice);
 	}
 
