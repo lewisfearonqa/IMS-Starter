@@ -53,22 +53,21 @@ public class ItemsControllerTest {
 
 		Mockito.verify(dao, Mockito.times(1)).readAll();
 	}
+	
 
 	@Test
 	public void testUpdate() {
-		Items updated = new Items(1L, "hockey ball", 40L);
+		Items updated = new Items(1L, "hockey ball", 20L);
 				
 
-		Mockito.when(this.utils.getLong()).thenReturn(1L);
+		Mockito.when(this.utils.getLong()).thenReturn(1L, updated.getitemPrice());
 		Mockito.when(this.utils.getString()).thenReturn(updated.getitemName());
-		Mockito.when(this.utils.getLong()).thenReturn(updated.getitemPrice());
 		Mockito.when(this.dao.update(updated)).thenReturn(updated);
 
 		assertEquals(updated, this.controller.update());
 
-		Mockito.verify(this.utils, Mockito.times(1)).getLong();
+		Mockito.verify(this.utils, Mockito.times(2)).getLong();
 		Mockito.verify(this.utils, Mockito.times(1)).getString();
-		Mockito.verify(this.utils, Mockito.times(1)).getLong();
 		Mockito.verify(this.dao, Mockito.times(1)).update(updated);
 	}
 
