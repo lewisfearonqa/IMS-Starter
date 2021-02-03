@@ -27,25 +27,25 @@ public class ItemsControllerTest {
 
 	@Test
 	public void testCreate() {
-		final String itemName = "football";
-		final Long itemPrice =  (long) 20;
-		final Items created = new Items(itemName, itemPrice);
+		final String item_name = "basketball";
+		final Long price =  20L;
+		final Items created = new Items(item_name, price);
 
-		Mockito.when(utils.getString()).thenReturn(itemName);
-		Mockito.when(utils.getLong()).thenReturn(itemPrice);
+		Mockito.when(utils.getString()).thenReturn(item_name);
+		Mockito.when(utils.getLong()).thenReturn(price);
 		Mockito.when(dao.create(created)).thenReturn(created);
 
 		assertEquals(created, controller.create());
 
-		Mockito.verify(utils, Mockito.times(2)).getString();
-		Mockito.verify(utils, Mockito.times(3)).getLong();
+		Mockito.verify(utils, Mockito.times(1)).getString();
+		Mockito.verify(utils, Mockito.times(1)).getLong();
 		Mockito.verify(dao, Mockito.times(1)).create(created);
 	}
 
 	@Test
 	public void testReadAll() {
 		List<Items> items = new ArrayList<>();
-		items.add(new Items(1L, "rugby ball", (long) 20));
+		items.add(new Items(1L, "Water bottle", 10L));
 
 		Mockito.when(dao.readAll()).thenReturn(items);
 
@@ -56,7 +56,8 @@ public class ItemsControllerTest {
 
 	@Test
 	public void testUpdate() {
-		Items updated = new Items(1L, "hockey ball", (long) 15);
+		Items updated = new Items(1L, "hockey ball", 40L);
+				
 
 		Mockito.when(this.utils.getLong()).thenReturn(1L);
 		Mockito.when(this.utils.getString()).thenReturn(updated.getitemName());
@@ -66,22 +67,22 @@ public class ItemsControllerTest {
 		assertEquals(updated, this.controller.update());
 
 		Mockito.verify(this.utils, Mockito.times(1)).getLong();
-		Mockito.verify(this.utils, Mockito.times(2)).getString();
-		Mockito.verify(this.utils, Mockito.times(3)).getLong();
+		Mockito.verify(this.utils, Mockito.times(1)).getString();
+		Mockito.verify(this.utils, Mockito.times(1)).getLong();
 		Mockito.verify(this.dao, Mockito.times(1)).update(updated);
 	}
 
 	@Test
 	public void testDelete() {
-		final long item_ID = 1L;
+		final long item_id = 1L;
 
-		Mockito.when(utils.getLong()).thenReturn(item_ID);
-		Mockito.when(dao.delete(item_ID)).thenReturn(1);
+		Mockito.when(utils.getLong()).thenReturn(item_id);
+		Mockito.when(dao.delete(item_id)).thenReturn(1);
 
 		assertEquals(1L, this.controller.delete());
 
 		Mockito.verify(utils, Mockito.times(1)).getLong();
-		Mockito.verify(dao, Mockito.times(1)).delete(item_ID);
+		Mockito.verify(dao, Mockito.times(1)).delete(item_id);
 
 	}
 }
