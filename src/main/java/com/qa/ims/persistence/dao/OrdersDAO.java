@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.qa.ims.persistence.domain.Customer;
+import com.qa.ims.persistence.domain.Orders;
 import com.qa.ims.utils.DBUtils;
 
 public class OrdersDAO implements Dao<Orders> {
@@ -19,10 +19,10 @@ public class OrdersDAO implements Dao<Orders> {
 	public Orders modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long newitemID = resultSet.getLong("newitemid");
-		return new Orders(id, newitemID);
+		Long custid = resultSet.getLong("custid");
+		return new Orders(id, newitemID, custid);
 	}
- 
-	
+
 	@Override
 	public List<Orders> readAll() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -53,12 +53,10 @@ public class OrdersDAO implements Dao<Orders> {
 		return null;
 	}
 
-	
 	@Override
 	public Orders create(Orders orders) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection
-						.prepareStatement("INSERT INTO orders(id) VALUES (?)");) {
+				PreparedStatement statement = connection.prepareStatement("INSERT INTO orders(id) VALUES (?)");) {
 			statement.setLong(1, orders.getnewitemID());
 			statement.executeUpdate();
 			return readLatest();
@@ -70,7 +68,7 @@ public class OrdersDAO implements Dao<Orders> {
 	}
 
 	@Override
-	public Customer read(Long newitemID) {
+	public Orders read(Long newitemID) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement("SELECT * FROM orders WHERE id = ?");) {
 			statement.setLong(1, newitemID);
@@ -85,9 +83,8 @@ public class OrdersDAO implements Dao<Orders> {
 		return null;
 	}
 
-	
 	@Override
-	public Customer update(Orders order) {
+	public Orders update(Orders orders) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("UPDATE customers SET order_id = ? WHERE id = ?");) {
@@ -102,7 +99,6 @@ public class OrdersDAO implements Dao<Orders> {
 		return null;
 	}
 
-	
 	@Override
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();

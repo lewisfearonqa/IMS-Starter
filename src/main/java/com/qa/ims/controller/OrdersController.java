@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.qa.ims.persistence.dao.CustomerDAO;
 import com.qa.ims.persistence.dao.OrdersDAO;
 import com.qa.ims.persistence.domain.Customer;
+import com.qa.ims.persistence.domain.Orders;
 import com.qa.ims.utils.Utils;
 
 public class OrdersController implements CrudController<Orders> {
@@ -18,28 +19,31 @@ public class OrdersController implements CrudController<Orders> {
 	@Override
 	public List<Orders> readAll() {
 		List<Orders> orders = ordersDAO.readAll();
-		for (Orders orders : orders) {
+		for (Orders order : orders) {
 			LOGGER.info(orders);
 		}
 		return orders;
 	}
 
 	@Override
-	public Customer create() {
+	public Orders create() {
 		LOGGER.info("Please enter your customer id");
 		Long custid = utils.getLong();
-		Orders order = ordersDAO.create(new OrdersDAO(custid));
+		Orders orders = ordersDAO.create(new Orders(custid));
 		LOGGER.info("Order created");
 		return orders;
 	}
 
 	@Override
-	public Customer update() {
+	
+	public Orders update() {
+		LOGGER.info("Please enter your customer id");
+		Long custid = utils.getLong();
 		LOGGER.info("Please enter the order id of the order you'd like to change");
 		Long id = utils.getLong();
 		LOGGER.info("Please enter the item id that you'd like to add");
-		Long newitemid = utils.getLong();
-		Orders orders = ordersDAO.update(new Orders(id, newitemid);
+		Long newitemID = utils.getLong();
+		Orders orders = ordersDAO.update(new Orders(id, newitemID, custid);
 		LOGGER.info("Order Updated");
 		return orders;
 	}
