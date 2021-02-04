@@ -2,13 +2,15 @@ package com.qa.ims.persistence.domain;
 
 public class Orders {
 	private Long id;
-	private Long newitemID;
+	private Long customerID;
 	
 
-	public Orders(Long id, Long newitemID) {
+	public Orders(Long id, Long customerID) {
 		this.setId(id);
-		this.setnewitemID(newitemID);
-		
+		this.setcustomerID(customerID);
+		}
+	public Orders(Long newitemID) {
+		this.setcustomerID(newitemID);
 	}
 
 	public Long getId() {
@@ -19,24 +21,24 @@ public class Orders {
 		this.id = id;
 	}
 
-	public Long getnewitemID() {
-		return newitemID;
+	public Long getcustomerID() {
+		return customerID;
 	}
 
-	public void setnewitemID(Long newitemID) {
-		this.newitemID = newitemID;
+	public void setcustomerID(Long customerID) {
+		this.customerID = customerID;
 	}
 	
 	@Override
 	public String toString() {
-		return "id:" + id + " item_id:" + newitemID;
+		return "id:" + id + " customerID" + customerID;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((newitemID == null) ? 0 : newitemID.hashCode());
+		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 
 		return result;
@@ -52,9 +54,9 @@ public class Orders {
 			return false;
 		Orders other = (Orders) obj;
 		if (id == null) {
-			if (other.newitemID != null)
+			if (other.customerID != null)
 				return false;
-		} else if (!newitemID.equals(other.newitemID))
+		} else if (!customerID.equals(other.customerID))
 			return false;
 		if (id == null) {
 			if (other.id != null)
