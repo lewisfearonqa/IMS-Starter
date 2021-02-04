@@ -1,45 +1,52 @@
 package com.qa.ims.persistence.domain;
 
 public class Orders {
-	private Long id;
+	private Long orderID;
 	private Long customerID;
-	
+	private Long itemID;
 
-	public Orders(Long id, Long customerID) {
-		this.setId(id);
-		this.setcustomerID(customerID);
+	public Orders(Long orderID, Long itemID) {
+		this.setorderID(orderID);
+		this.setitemID(itemID);
 		}
-	public Orders(Long newitemID) {
-		this.setcustomerID(newitemID);
+	public Long getorderID() {
+		return orderID;
 	}
 
-	public Long getId() {
-		return id;
+	public void setorderID(Long orderID) {
+		this.orderID= orderID;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Long getitemID() {
+		return itemID;
 	}
 
-	public Long getcustomerID() {
-		return customerID;
-	}
-
-	public void setcustomerID(Long customerID) {
-		this.customerID = customerID;
+	public void setitemID(Long itemID) {
+		this.itemID = itemID;
 	}
 	
 	@Override
 	public String toString() {
-		return "id:" + id + " customerID" + customerID;
+		return "order_id:" + orderID + "item_Id:" + itemID;
 	}
+	public Orders(Long customerID) {
+		this.setcustomerID(customerID);
+		
+	}
+	public Long getcustomerID() {
+		return customerID;
+	}
+	public void setcustomerID(Long customerID) {
+		this.customerID=customerID;
+	}
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((itemID == null) ? 0 : itemID.hashCode());
+		result = prime * result + ((orderID == null) ? 0 : orderID.hashCode());
 
 		return result;
 	}
@@ -53,15 +60,15 @@ public class Orders {
 		if (getClass() != obj.getClass())
 			return false;
 		Orders other = (Orders) obj;
-		if (id == null) {
-			if (other.customerID != null)
+		if (orderID == null) {
+			if (other.itemID != null)
 				return false;
-		} else if (!customerID.equals(other.customerID))
+		} else if (!itemID.equals(other.itemID))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (orderID == null) {
+			if (other.orderID != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!orderID.equals(other.orderID))
 			return false;
 		return false;
 

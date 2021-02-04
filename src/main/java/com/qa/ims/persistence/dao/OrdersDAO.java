@@ -17,9 +17,10 @@ public class OrdersDAO implements Dao<Orders> {
 
 	@Override
 	public Orders modelFromResultSet(ResultSet resultSet) throws SQLException {
-		Long id = resultSet.getLong("order_id");
+		Long orderID = resultSet.getLong("order_id");
+		Long itemID = resultSet.getLong("item_id");
 		Long customerID = resultSet.getLong("id");
-		return new Orders(id, customerID);
+		return new Orders(orderID, itemID);
 	}
 
 	@Override
@@ -69,8 +70,8 @@ public class OrdersDAO implements Dao<Orders> {
 	@Override
 	public Orders read(Long newitemID) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("SELECT * FROM orders WHERE id = ?");) {
-			statement.setLong(1, newitemID);
+				PreparedStatement statement = connection.prepareStatement("SELECT * FROM orders WHERE order_id = ?");) {
+			statement.setLong(1, orders.getorderID());
 			try (ResultSet resultSet = statement.executeQuery();) {
 				resultSet.next();
 				return modelFromResultSet(resultSet);
@@ -88,9 +89,9 @@ public class OrdersDAO implements Dao<Orders> {
 				PreparedStatement statement = connection
 						.prepareStatement("UPDATE customers SET order_id = ? WHERE id = ?");) {
 			statement.setLong(1, orders.getcustomerID());
-			statement.setLong(3, orders.getId());
+			statement.setLong(3, orders.getorderID());
 			statement.executeUpdate();
-			return read(orders.getId());
+			return read(orders.getorderID());
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
