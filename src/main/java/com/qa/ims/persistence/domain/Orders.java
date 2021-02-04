@@ -3,12 +3,12 @@ package com.qa.ims.persistence.domain;
 public class Orders {
 	private Long id;
 	private Long newitemID;
-	private Long custid;
+	
 
-	public Orders(Long id, Long newitemID, Long custid) {
+	public Orders(Long id, Long newitemID) {
 		this.setId(id);
 		this.setnewitemID(newitemID);
-		this.setcustid(custid);
+		
 	}
 
 	public Long getId() {
@@ -26,15 +26,10 @@ public class Orders {
 	public void setnewitemID(Long newitemID) {
 		this.newitemID = newitemID;
 	}
-	public Long getustid() {
-		return custid;
-		}
-	public void setcustid(Long custid) {
-		this.custid = custid;
-	}
+	
 	@Override
 	public String toString() {
-		return "id:" + id + " item_id:" + newitemID + "custid:" + custid;
+		return "id:" + id + " item_id:" + newitemID;
 	}
 
 	@Override
@@ -43,7 +38,7 @@ public class Orders {
 		int result = 1;
 		result = prime * result + ((newitemID == null) ? 0 : newitemID.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((custid == null) ? 0 : custid.hashCode());
+
 		return result;
 	}
 
@@ -65,11 +60,6 @@ public class Orders {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (custid == null) {
-			if (other.custid != null)
-				return false;
-		} else if (!custid.equals(other.custid))
 			return false;
 		return false;
 

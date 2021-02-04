@@ -19,8 +19,7 @@ public class OrdersDAO implements Dao<Orders> {
 	public Orders modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long newitemID = resultSet.getLong("newitemid");
-		Long custid = resultSet.getLong("custid");
-		return new Orders(id, newitemID, custid);
+		return new Orders(id, newitemID);
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Orders;
 import com.qa.ims.utils.Utils;
 
-public class OrdersController implements CrudController<Orders> {
+public class OrdersController implements CrudController<Orders>, OrdersControllerInterface {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 
@@ -26,24 +26,13 @@ public class OrdersController implements CrudController<Orders> {
 	}
 
 	@Override
-	public Orders create() {
-		LOGGER.info("Please enter your customer id");
-		Long custid = utils.getLong();
-		Orders orders = ordersDAO.create(new Orders(custid));
-		LOGGER.info("Order created");
-		return orders;
-	}
-
-	@Override
 	
 	public Orders update() {
-		LOGGER.info("Please enter your customer id");
-		Long custid = utils.getLong();
 		LOGGER.info("Please enter the order id of the order you'd like to change");
 		Long id = utils.getLong();
 		LOGGER.info("Please enter the item id that you'd like to add");
 		Long newitemID = utils.getLong();
-		Orders orders = ordersDAO.update(new Orders(id, newitemID, custid);
+		Orders orders = ordersDAO.update(new Orders(id, newitemID));
 		LOGGER.info("Order Updated");
 		return orders;
 	}
@@ -54,6 +43,22 @@ public class OrdersController implements CrudController<Orders> {
 		Long id = utils.getLong();
 		return ordersDAO.delete(id);
 	}
+
+	@Override
+	@Override
+	public Long create() {
+		LOGGER.info("Please enter your customer id");
+		Long custid = utils.getLong();
+		Orders custid1 = ordersDAO.create(new custit(custid1));
+		return custid;
+	}
+
+	@Override
+	public Orders create() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
 
