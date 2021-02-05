@@ -3,50 +3,44 @@ package com.qa.ims.persistence.domain;
 public class Orders {
 	private Long orderID;
 	private Long customerID;
-	private Long itemID;
 
-	public Orders(Long orderID, Long itemID) {
+	public Orders(Long customerID) {
+		this.setcustomerID(customerID);
+
+	}
+
+	public Orders(Long orderID, Long customerID) {
 		this.setorderID(orderID);
-		this.setitemID(itemID);
-		}
+		this.setcustomerID(customerID);
+	}
+
 	public Long getorderID() {
 		return orderID;
 	}
 
 	public void setorderID(Long orderID) {
-		this.orderID= orderID;
+		this.orderID = orderID;
 	}
 
-	public Long getitemID() {
-		return itemID;
-	}
-
-	public void setitemID(Long itemID) {
-		this.itemID = itemID;
-	}
-	
-	@Override
-	public String toString() {
-		return "order_id:" + orderID + "item_Id:" + itemID;
-	}
-	public Orders(Long customerID) {
-		this.setcustomerID(customerID);
-		
-	}
 	public Long getcustomerID() {
 		return customerID;
 	}
+
 	public void setcustomerID(Long customerID) {
-		this.customerID=customerID;
+		this.customerID = customerID;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "order_id:" + orderID + "id:" + customerID;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((itemID == null) ? 0 : itemID.hashCode());
 		result = prime * result + ((orderID == null) ? 0 : orderID.hashCode());
+		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
 
 		return result;
 	}
@@ -60,19 +54,17 @@ public class Orders {
 		if (getClass() != obj.getClass())
 			return false;
 		Orders other = (Orders) obj;
-		if (orderID == null) {
-			if (other.itemID != null)
+		if (getorderID() == null) {
+			if (other.getorderID() != null)
 				return false;
-		} else if (!itemID.equals(other.itemID))
+		} else if (!getorderID().equals(other.getorderID()))
 			return false;
-		if (orderID == null) {
-			if (other.orderID != null)
+		if (customerID == null) {
+			if (other.customerID != null)
 				return false;
-		} else if (!orderID.equals(other.orderID))
+		} else if (!customerID.equals(other.customerID))
 			return false;
-		return false;
-
+		return true;
 	}
 
 }
-

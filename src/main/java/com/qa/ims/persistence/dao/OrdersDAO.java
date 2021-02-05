@@ -18,9 +18,8 @@ public class OrdersDAO implements Dao<Orders> {
 	@Override
 	public Orders modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long orderID = resultSet.getLong("order_id");
-		Long itemID = resultSet.getLong("item_id");
 		Long customerID = resultSet.getLong("id");
-		return new Orders(orderID, itemID);
+		return new Orders(orderID, customerID);
 	}
 
 	@Override
@@ -68,10 +67,10 @@ public class OrdersDAO implements Dao<Orders> {
 	}
 
 	@Override
-	public Orders read(Long newitemID) {
+	public Orders read(Long orderID) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement("SELECT * FROM orders WHERE order_id = ?");) {
-			statement.setLong(1, orders.getorderID());
+			statement.setLong(1, orderID);
 			try (ResultSet resultSet = statement.executeQuery();) {
 				resultSet.next();
 				return modelFromResultSet(resultSet);
