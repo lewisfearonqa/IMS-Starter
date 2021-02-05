@@ -55,7 +55,7 @@ public class OrdersDAO implements Dao<Orders> {
 	@Override
 	public Orders create(Orders orders) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("INSERT INTO orders(id) VALUES (?)");) {
+				PreparedStatement statement = connection.prepareStatement("INSERT INTO orders(id) SELECT id FROM customers WHERE id=?");) {
 			statement.setLong(1, orders.getcustomerID());
 			statement.executeUpdate();
 			return readLatest();
@@ -86,7 +86,7 @@ public class OrdersDAO implements Dao<Orders> {
 	public Orders update(Orders orders) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("UPDATE customers SET order_id = ? WHERE id = ?");) {
+						.prepareStatement("UPDATE id SET order_id = ? WHERE id = ?");) {
 			statement.setLong(1, orders.getcustomerID());
 			statement.setLong(3, orders.getorderID());
 			statement.executeUpdate();

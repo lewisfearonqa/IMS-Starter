@@ -32,7 +32,6 @@ public class OrdersController implements CrudController<Orders> {
 		}
 		return order;
 	}
-
 	@Override
 	public Orders create() {
 		LOGGER.info("Please enter your customer ID");
@@ -41,10 +40,6 @@ public class OrdersController implements CrudController<Orders> {
 		LOGGER.info("Order created");
 		return order;
 	}
-
-	/**
-	 * Updates an existing customer by taking in user input
-	 */
 	@Override
 	public Orders update() {
 		LOGGER.info("Please enter the id of the order you would like to update");
@@ -53,12 +48,6 @@ public class OrdersController implements CrudController<Orders> {
 		LOGGER.info("Order Updated");
 		return order;
 	}
-
-	/**
-	 * Deletes an existing customer by the id of the customer
-	 * 
-	 * @return
-	 */
 	@Override
 	public int delete() {
 		LOGGER.info("Please enter the id of the order you would like to delete");

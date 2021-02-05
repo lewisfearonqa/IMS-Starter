@@ -32,7 +32,7 @@ public class Orders {
 
 	@Override
 	public String toString() {
-		return "order_id:" + orderID + "id:" + customerID;
+		return "order_id: " + orderID + "id: " + customerID;
 	}
 
 	@Override
