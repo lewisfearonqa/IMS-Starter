@@ -21,4 +21,5 @@ public interface Dao<T> {
 	T modelFromResultSet(ResultSet resultSet) throws SQLException;
 
 	
+	
 }

@@ -4,20 +4,24 @@ public class Orders {
 	private Long orderID;
 	private Long customerID;
 	private Long itemID;
+	private String additem;
+
+	
 
 	public Orders(Long customerID) {
 		this.setcustomerID(customerID);
 
 	}
-
-	public void order(Long itemID) {
-		this.setitemID(itemID);
-		
+	public Orders(String additem, Long orderid, Long itemid) {
+		this.setadditem(additem);
+		this.setorderid(orderid);
+		this.setitemid(itemid);
 	}
-
+	
 	public Orders(Long orderID, Long customerID) {
 		this.setorderID(orderID);
 		this.setcustomerID(customerID);
+		this.setorderID(itemID);
 	}
 
 	public Long getorderID() {
@@ -35,13 +39,34 @@ public class Orders {
 	public void setcustomerID(Long customerID) {
 		this.customerID = customerID;
 	}
-
 	public Long getitemID() {
 		return itemID;
 	}
 
 	public void setitemID(Long itemID) {
 		this.itemID = itemID;
+	}
+
+	public String getadditem() {
+		return additem;
+	}
+
+	public void setadditem(String additem) {
+		this.additem = additem;
+	}
+	public Long getorderid() {
+		return orderID;
+	}
+
+	public void setorderid(Long orderid) {
+		this.orderID = orderid;
+	}
+	public Long getitemid() {
+		return itemID;
+	}
+
+	public void setitemid(Long itemid) {
+		this.itemID = itemid;
 	}
 	@Override
 	public String toString() {
@@ -55,7 +80,6 @@ public class Orders {
 		result = prime * result + ((orderID == null) ? 0 : orderID.hashCode());
 		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
 		result = prime * result + ((itemID == null) ? 0 : itemID.hashCode());
-
 		return result;
 	}
 
@@ -82,9 +106,8 @@ public class Orders {
 			if (other.itemID != null)
 				return false;
 		} else if (!itemID.equals(other.itemID))
+			return false;
 		return false;
-		return true;
-		
 	}
-
+	
 }
