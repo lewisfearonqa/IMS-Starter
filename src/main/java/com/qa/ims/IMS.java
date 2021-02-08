@@ -2,13 +2,14 @@ package com.qa.ims;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.qa.ims.controller.Action;
 import com.qa.ims.controller.CrudController;
 import com.qa.ims.controller.CustomerController;
 import com.qa.ims.controller.OrdersController;
 import com.qa.ims.persistence.dao.CustomerDAO;
 import com.qa.ims.persistence.dao.OrdersDAO;
+import com.qa.ims.controller.ItemsController;
+import com.qa.ims.persistence.dao.ItemsDAO;
 import com.qa.ims.persistence.domain.Domain;
 import com.qa.ims.utils.DBUtils;
 import com.qa.ims.utils.Utils;
@@ -19,7 +20,11 @@ public class IMS {
 
 	private final CustomerController customers;
 	private final Utils utils;
+
 	private final OrdersController orders;
+
+	private final ItemsController items;
+
 	
 
 	public IMS() {
@@ -28,6 +33,10 @@ public class IMS {
 		this.customers = new CustomerController(custDAO, utils);
 		final OrdersDAO ordersDAO = new OrdersDAO();
 		this.orders = new OrdersController(ordersDAO, utils);
+		final ItemsDAO itDAO = new ItemsDAO();
+		this.items = new ItemsController(itDAO, utils);
+		
+
 	}
 
 	public void imsSystem() {
@@ -56,6 +65,7 @@ public class IMS {
 				active = this.customers;
 				break;
 			case ITEM:
+				active = this.items;
 				break;
 			case ORDER:
 				active = this.orders;
