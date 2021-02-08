@@ -3,10 +3,7 @@ package com.qa.ims.controller;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.qa.ims.persistence.dao.CustomerDAO;
 import com.qa.ims.persistence.dao.OrdersDAO;
-import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Orders;
 import com.qa.ims.utils.Utils;
 
@@ -54,7 +51,16 @@ public class OrdersController implements CrudController<Orders> {
 		Long orderID = utils.getLong();
 		return ordersDAO.delete(orderID);
 	}
-
+	
+	public Orders order() {
+		LOGGER.info("Please enter your order ID");
+		Long orderID = utils.getLong();
+		LOGGER.info("Please enter the ID of the item you wish to order");
+		Long itemID = utils.getLong();
+		Orders order = ordersDAO.create(new Orders(itemID, orderID));
+		LOGGER.info("Item added to your order");
+		return order;
+	}
 }
 
 

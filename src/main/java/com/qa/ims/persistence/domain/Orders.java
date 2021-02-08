@@ -3,10 +3,16 @@ package com.qa.ims.persistence.domain;
 public class Orders {
 	private Long orderID;
 	private Long customerID;
+	private Long itemID;
 
 	public Orders(Long customerID) {
 		this.setcustomerID(customerID);
 
+	}
+
+	public void order(Long itemID) {
+		this.setitemID(itemID);
+		
 	}
 
 	public Orders(Long orderID, Long customerID) {
@@ -30,9 +36,16 @@ public class Orders {
 		this.customerID = customerID;
 	}
 
+	public Long getitemID() {
+		return itemID;
+	}
+
+	public void setitemID(Long itemID) {
+		this.itemID = itemID;
+	}
 	@Override
 	public String toString() {
-		return "order_id: " + orderID + "id: " + customerID;
+		return "order_id:" +  orderID  +" " +  "id:" + customerID;
 	}
 
 	@Override
@@ -41,6 +54,7 @@ public class Orders {
 		int result = 1;
 		result = prime * result + ((orderID == null) ? 0 : orderID.hashCode());
 		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
+		result = prime * result + ((itemID == null) ? 0 : itemID.hashCode());
 
 		return result;
 	}
@@ -64,7 +78,13 @@ public class Orders {
 				return false;
 		} else if (!customerID.equals(other.customerID))
 			return false;
+		if (itemID == null) {
+			if (other.itemID != null)
+				return false;
+		} else if (!itemID.equals(other.itemID))
+		return false;
 		return true;
+		
 	}
 
 }
