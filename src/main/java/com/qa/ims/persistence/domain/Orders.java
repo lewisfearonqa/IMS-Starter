@@ -7,19 +7,16 @@ public class Orders {
 	private Long customerID;
 	private List<Items> items;
 
-	
-
-	 public Orders(Long customerID)  { 
-		 super();
+	public Orders(Long customerID) {
+		super();
 		this.customerID = customerID;
 
 	}
-	
-	
+
 	public Orders(Long orderID, Long customerID) {
 		super();
 		this.orderID = orderID;
-		this.customerID = customerID;	
+		this.customerID = customerID;
 	}
 
 	public Orders(Long orderID, Long customerID, List<Items> items) {
@@ -30,40 +27,33 @@ public class Orders {
 
 	}
 
-	
 	public Long getOrderID() {
 		return orderID;
 	}
-
 
 	public void setOrderID(Long orderID) {
 		this.orderID = orderID;
 	}
 
-
 	public Long getCustomerID() {
 		return customerID;
 	}
-
 
 	public void setCustomerID(Long customerID) {
 		this.customerID = customerID;
 	}
 
-
 	public List<Items> getItems() {
 		return items;
 	}
-
 
 	public void setItems(List<Items> items) {
 		this.items = items;
 	}
 
-
 	@Override
 	public String toString() {
-		return "order_id:" +  orderID  +" " +  "customer_id:" + customerID;
+		return "order_id:" + orderID + " " + "customer_id:" + customerID + " " + "item_id:";
 	}
 
 	@Override
@@ -101,5 +91,5 @@ public class Orders {
 			return false;
 		return true;
 	}
-	
+
 }

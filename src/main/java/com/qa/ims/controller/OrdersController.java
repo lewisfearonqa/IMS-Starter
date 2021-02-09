@@ -7,19 +7,18 @@ import com.qa.ims.persistence.dao.OrdersDAO;
 import com.qa.ims.persistence.domain.Orders;
 import com.qa.ims.utils.Utils;
 
-public  class OrdersController implements CrudController<Orders> {
+public class OrdersController implements CrudController<Orders> {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	private OrdersDAO ordersDAO;
 	private Utils utils;
-	
+
 	public OrdersController(OrdersDAO ordersDAO, Utils utils) {
 		super();
 		this.ordersDAO = ordersDAO;
 		this.utils = utils;
 	}
-
 
 	@Override
 	public List<Orders> readAll() {
@@ -29,6 +28,7 @@ public  class OrdersController implements CrudController<Orders> {
 		}
 		return order;
 	}
+
 	@Override
 	public Orders create() {
 		LOGGER.info("Please enter your customer ID");
@@ -38,21 +38,17 @@ public  class OrdersController implements CrudController<Orders> {
 		return order;
 	}
 
-
 	@Override
 	public Orders update() {
 		LOGGER.info("Please enter the id of the order you would like to update");
+		Long orderID = utils.getLong();
+		LOGGER.info("Please enter the ID of the item you would like to add to your order");
 		Long itemID = utils.getLong();
-		Orders order = ordersDAO.update(new Orders(itemID));
+		Orders order = ordersDAO.update(new Orders(orderID, itemID));
 		LOGGER.info("Order Updated");
 		return order;
 	}
 
-	public int update2() {
-		LOGGER.info("Please enter the id of the item you would like to delete");
-		Long itemID = utils.getLong();
-		return ordersDAO.delete(itemID);
-	}
 	@Override
 	public int delete() {
 		LOGGER.info("Please enter the id of the order you would like to delete");
@@ -60,5 +56,3 @@ public  class OrdersController implements CrudController<Orders> {
 		return ordersDAO.delete(orderID);
 	}
 }
-
-

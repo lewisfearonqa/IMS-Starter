@@ -46,7 +46,7 @@ public class Items {
 
 	@Override
 	public String toString() {
-		return "item_ID:" + item_ID + " item Name:" + itemName + " item Price:" + itemPrice;
+		return "item_ID:" + item_ID +" " + " item Name:" + itemName +" " + " item Price:" + itemPrice;
 	}
 
 	@Override
@@ -86,5 +86,9 @@ public class Items {
 		return true;
 	}
 
-}
+	
+		
+	}
+
+
 
