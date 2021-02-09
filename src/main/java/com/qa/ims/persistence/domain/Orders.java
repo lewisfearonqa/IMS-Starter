@@ -1,76 +1,69 @@
 package com.qa.ims.persistence.domain;
 
+import java.util.List;
+
 public class Orders {
 	private Long orderID;
 	private Long customerID;
-	private Long itemID;
-	private String additem;
+	private List<Items> items;
 
 	
 
-	public Orders(Long customerID) {
-		this.setcustomerID(customerID);
+	 public Orders(Long customerID)  { 
+		 super();
+		this.customerID = customerID;
 
 	}
-	public Orders(String additem, Long orderid, Long itemid) {
-		this.setadditem(additem);
-		this.setorderid(orderid);
-		this.setitemid(itemid);
-	}
+	
 	
 	public Orders(Long orderID, Long customerID) {
-		this.setorderID(orderID);
-		this.setcustomerID(customerID);
-		this.setorderID(itemID);
+		super();
+		this.orderID = orderID;
+		this.customerID = customerID;	
 	}
 
-	public Long getorderID() {
+	public Orders(Long orderID, Long customerID, List<Items> items) {
+		super();
+		this.orderID = orderID;
+		this.customerID = customerID;
+		this.items = items;
+
+	}
+
+	
+	public Long getOrderID() {
 		return orderID;
 	}
 
-	public void setorderID(Long orderID) {
+
+	public void setOrderID(Long orderID) {
 		this.orderID = orderID;
 	}
 
-	public Long getcustomerID() {
+
+	public Long getCustomerID() {
 		return customerID;
 	}
 
-	public void setcustomerID(Long customerID) {
+
+	public void setCustomerID(Long customerID) {
 		this.customerID = customerID;
 	}
-	public Long getitemID() {
-		return itemID;
+
+
+	public List<Items> getItems() {
+		return items;
 	}
 
-	public void setitemID(Long itemID) {
-		this.itemID = itemID;
+
+	public void setItems(List<Items> items) {
+		this.items = items;
 	}
 
-	public String getadditem() {
-		return additem;
-	}
 
-	public void setadditem(String additem) {
-		this.additem = additem;
-	}
-	public Long getorderid() {
-		return orderID;
-	}
-
-	public void setorderid(Long orderid) {
-		this.orderID = orderid;
-	}
-	public Long getitemid() {
-		return itemID;
-	}
-
-	public void setitemid(Long itemid) {
-		this.itemID = itemid;
-	}
 	@Override
 	public String toString() {
-		return "order_id:" +  orderID  +" " +  "id:" + customerID;
+		return "order_id:" +  orderID  +" " +  "customer_id:" + customerID;
 	}
 
 	@Override
@@ -79,7 +72,6 @@ public class Orders {
 		int result = 1;
 		result = prime * result + ((orderID == null) ? 0 : orderID.hashCode());
 		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
-		result = prime * result + ((itemID == null) ? 0 : itemID.hashCode());
 		return result;
 	}
 
@@ -92,22 +84,22 @@ public class Orders {
 		if (getClass() != obj.getClass())
 			return false;
 		Orders other = (Orders) obj;
-		if (getorderID() == null) {
-			if (other.getorderID() != null)
+		if (getCustomerID() == null) {
+			if (other.getCustomerID() != null)
 				return false;
-		} else if (!getorderID().equals(other.getorderID()))
+		} else if (!getCustomerID().equals(other.getCustomerID()))
 			return false;
-		if (customerID == null) {
-			if (other.customerID != null)
+		if (orderID == null) {
+			if (other.orderID != null)
 				return false;
-		} else if (!customerID.equals(other.customerID))
+		} else if (!orderID.equals(other.orderID))
 			return false;
-		if (itemID == null) {
-			if (other.itemID != null)
+		if (items == null) {
+			if (other.items != null)
 				return false;
-		} else if (!itemID.equals(other.itemID))
+		} else if (!items.equals(other.items))
 			return false;
-		return false;
+		return true;
 	}
 	
 }
