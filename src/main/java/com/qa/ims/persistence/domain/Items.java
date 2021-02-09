@@ -5,44 +5,48 @@ public class Items {
 	private String itemName;
 	private Long itemPrice;
 
-	public  Items(String item_name, Long itemPrice) {
-		this.setitemName(item_name);
-		this.setitemPrice(itemPrice);
+	public  Items(String itemName, Long itemPrice) {
+		super();
+		this.itemName = itemName;
+		this.itemPrice = itemPrice;
 	}
 
 	public  Items(Long item_ID, String itemName, Long itemPrice) {
-		this.setitem_ID(item_ID);
-		this.setitemName(itemName);
-		this.setitemPrice(itemPrice);
+		super();
+		this.item_ID = item_ID;
+		this.itemName = itemName;
+		this.itemPrice = itemPrice;
 	}
 
-	public Long getitem_ID() {
+	
+
+	public Long getItem_ID() {
 		return item_ID;
 	}
 
-	public void setitem_ID(Long item_ID) {
+	public void setItem_ID(Long item_ID) {
 		this.item_ID = item_ID;
 	}
 
-	public String getitemName() {
+	public String getItemName() {
 		return itemName;
 	}
 
-	public void setitemName(String itemName) {
+	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
 
-	public Long getitemPrice() {
+	public Long getItemPrice() {
 		return itemPrice;
 	}
 
-	public void setitemPrice(Long itemPrice) {
+	public void setItemPrice(Long itemPrice) {
 		this.itemPrice = itemPrice;
 	}
 
 	@Override
 	public String toString() {
-		return "item_ID:" + item_ID + " itemName:" + itemName + " itemPrice:" + itemPrice;
+		return "item_ID:" + item_ID + " item Name:" + itemName + " item Price:" + itemPrice;
 	}
 
 	@Override
@@ -64,10 +68,10 @@ public class Items {
 		if (getClass() != obj.getClass())
 			return false;
 		Items other = (Items) obj;
-		if (getitemName() == null) {
-			if (other.getitemName() != null)
+		if (getItemName() == null) {
+			if (other.getItemName() != null)
 				return false;
-		} else if (!getitemName().equals(other.getitemName()))
+		} else if (!getItemName().equals(other.getItemName()))
 			return false;
 		if (item_ID == null) {
 			if (other.item_ID != null)
