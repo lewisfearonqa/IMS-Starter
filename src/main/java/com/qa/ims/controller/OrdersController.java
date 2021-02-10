@@ -42,36 +42,42 @@ public class OrdersController implements CrudController<Orders> {
 
 	@Override
 	public Orders update() {
-		LOGGER.info("Please enter the id of the order you would like to update");
+		Orders orderUpdate = null;
+
+		LOGGER.info("Please enter your order id");
 		Long orderID = utils.getLong();
-		try {
-			do {
-				switch(action) {
-				case "Yes":
-					LOGGER.info("Would you like to add an item to your order. Please enter Yes or No");
-					break;
-				case "No":
-				LOGGER.info("Would you like to delete an item that you have within your order? Please enter Yes or No");
-				break;
-				case "Yes":
-					LOGGER.info("Please enter your order ID");
-					LOGGER.info("Please enter the item ID");
-					LOGGER.info("The item has been deleted and your order has been update");
-					break;
-				default:
-					LOGGER.info("Use retrun to return to the main menu, Thank you ");
-					
-			finally {
-				
-			}
+		LOGGER.info("Would you like to add an item to your order. Please enter Add or Delete");
+		String addOrDelete = utils.getString();
+
+		switch (addOrDelete) {
+		case "Add":
+			LOGGER.info("Please enter the id of the item you wish to add to your order");
+			Long itemID = utils.getLong();
+			orderUpdate = this.ordersDAO.addItemToOrder(orderID, itemID);
+			LOGGER.info("The item has been added. Thank you");
+			break;
+		case "Delete":
+			LOGGER.info("Please enter the item ID");
+			Long itemId = utils.getLong();
+			orderUpdate = this.ordersDAO.removeItemOrder(orderID, itemId);
+			LOGGER.info("The item has been deleted and your order has been update");
+			break;
+		default:
+			LOGGER.info("Use retrun to return to the main menu, Thank you ");
+			break;
+		}
+		return orderUpdate;
+
 		
+		}
+				
 //		LOGGER.info("Please enter the ID of the item you would like to add to your order");
 //		Long itemID = utils.getLong();
 //		Orders order = ordersDAO.update(new Orders(orderID, itemID));
 //		LOGGER.info("Order Updated");
 //		return order;
 //			}}
-	}
+	
 
 	@Override
 	public int delete() {
