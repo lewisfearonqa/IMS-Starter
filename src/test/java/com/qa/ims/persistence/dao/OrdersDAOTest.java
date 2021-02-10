@@ -27,7 +27,7 @@ public class OrdersDAOTest {
 	@Test
 	public void testCreate() {
 		List<Items> items = new ArrayList<>();
-		final Orders created = new Orders(2L, 1L, items);
+		final Orders created = new Orders(3L, 2L, items);
 		assertEquals(created, DAO.create(created));
 	}
 
@@ -35,14 +35,14 @@ public class OrdersDAOTest {
 	public void testReadAll() {
 		List<Orders> expected = new ArrayList<>();
 		List<Items> items = new ArrayList<>();
-		expected.add(new Orders(1L, 1L, items));
+		expected.add(new Orders(3L, 2L, items));
 		assertEquals(expected, DAO.readAll());
 	}
 
 	@Test
 	public void testReadLatest() {
 		List<Items> items = new ArrayList<>();
-		final Orders expected = new Orders(1L, 1L, items);
+		final Orders expected = new Orders(3L, 2L, items);
 		assertEquals(expected, DAO.readLatest());
 	}
 
@@ -64,10 +64,10 @@ public class OrdersDAOTest {
 	@Test
 	public void testAddItemToOrder() {
 		List<Items> items = new ArrayList<>();
-		items.add(new Items(1L, "ball", 40L));
-		testOrders = new Orders(1L, 1L, items);
-		this.testOrders.getItems().add(new Items(1L, "ball", 40L));
-		assertEquals(testOrders, DAO.addItemToOrder(1L, 1L));
+		items.add(new Items(2L, "ball", 20L));
+		testOrders = new Orders(2L, 2L, items);
+		this.testOrders.getItems().add(new Items(2L, "ball", 20L));
+		assertEquals(testOrders, DAO.addItemToOrder(2L, 2L));
 
 	}
 
