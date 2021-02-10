@@ -1,4 +1,5 @@
 package com.qa.ims.persistence.dao;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
@@ -11,22 +12,19 @@ import java.util.List;
 import com.qa.ims.persistence.domain.Items;
 import com.qa.ims.utils.DBUtils;
 
-
-public  class ItemsDAO implements Dao<Items> {
+public class ItemsDAO implements Dao<Items> {
 
 	public static final Logger LOGGER = LogManager.getLogger();
-    
+
 	@Override
 	public Items modelFromResultSet(ResultSet resultSet) throws SQLException {
-		Long item_ID = resultSet.getLong("item_id");
+		Long itemID = resultSet.getLong("item_id");
 		String itemName = resultSet.getString("item_name");
 		Long itemPrice = resultSet.getLong("price");
-		return new Items(item_ID, itemName, itemPrice);
-	
-		
+		return new Items(itemID, itemName, itemPrice);
+
 	}
-	
-	
+
 	@Override
 	public List<Items> readAll() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -56,11 +54,12 @@ public  class ItemsDAO implements Dao<Items> {
 		}
 		return null;
 	}
+
 	@Override
-	public Items read(Long item_ID) {
+	public Items read(Long itemID) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement("SELECT * FROM items WHERE item_id = ?");) {
-			statement.setLong(1, item_ID);
+			statement.setLong(1, itemID);
 			try (ResultSet resultSet = statement.executeQuery();) {
 				resultSet.next();
 				return modelFromResultSet(resultSet);
@@ -71,7 +70,7 @@ public  class ItemsDAO implements Dao<Items> {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Items create(Items Items) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -87,6 +86,7 @@ public  class ItemsDAO implements Dao<Items> {
 		}
 		return null;
 	}
+
 	@Override
 	public Items update(Items Items) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -101,21 +101,22 @@ public  class ItemsDAO implements Dao<Items> {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-		
+
 		return null;
 	}
+
 	@Override
-	public int delete(long item_ID) {
+	public int delete(long itemID) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement("DELETE FROM items WHERE item_id = ?");) {
-			statement.setLong(1, item_ID);
+			statement.setLong(1, itemID);
 			return statement.executeUpdate();
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		return 0;
-		
+
 	}
 	
 	}
