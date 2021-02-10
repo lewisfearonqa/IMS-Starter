@@ -22,8 +22,8 @@ public class Items {
 		return itemID;
 	}
 
-	public void setItem_ID(Long item_ID) {
-		this.itemID = item_ID;
+	public void setItem_ID(Long itemID) {
+		this.itemID = itemID;
 	}
 
 	public String getItemName() {

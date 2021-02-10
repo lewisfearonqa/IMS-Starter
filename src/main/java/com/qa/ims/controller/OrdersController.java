@@ -1,8 +1,6 @@
 package com.qa.ims.controller;
 
 import java.util.List;
-import java.util.Scanner;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.qa.ims.persistence.dao.OrdersDAO;
