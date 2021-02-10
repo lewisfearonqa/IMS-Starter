@@ -55,7 +55,7 @@ public class Orders {
 
 	@Override
 	public String toString() {
-		return ("orderID:" + orderID + ","  + "customerID:" + customerID +" " +", items:" + items + "");
+		return ("orderID:" + orderID + " "  + "customerID:" + customerID +" " +", items:" + items + " ");
 		
 	}
 
@@ -94,5 +94,7 @@ public class Orders {
 			return false;
 		return true;
 	}
+
+	
 
 }

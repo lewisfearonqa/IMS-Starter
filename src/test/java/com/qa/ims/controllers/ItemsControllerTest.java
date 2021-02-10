@@ -27,11 +27,11 @@ public class ItemsControllerTest {
 
 	@Test
 	public void testCreate() {
-		final String item_name = "basketball";
+		final String itemName = "basketball";
 		final Long price =  20L;
-		final Items created = new Items(item_name, price);
+		final Items created = new Items(itemName, price);
 
-		Mockito.when(utils.getString()).thenReturn(item_name);
+		Mockito.when(utils.getString()).thenReturn(itemName);
 		Mockito.when(utils.getLong()).thenReturn(price);
 		Mockito.when(dao.create(created)).thenReturn(created);
 
@@ -73,15 +73,15 @@ public class ItemsControllerTest {
 
 	@Test
 	public void testDelete() {
-		final long item_id = 1L;
+		final long itemID = 1L;
 
-		Mockito.when(utils.getLong()).thenReturn(item_id);
-		Mockito.when(dao.delete(item_id)).thenReturn(1);
+		Mockito.when(utils.getLong()).thenReturn(itemID);
+		Mockito.when(dao.delete(itemID)).thenReturn(1);
 
 		assertEquals(1L, this.controller.delete());
 
 		Mockito.verify(utils, Mockito.times(1)).getLong();
-		Mockito.verify(dao, Mockito.times(1)).delete(item_id);
+		Mockito.verify(dao, Mockito.times(1)).delete(itemID);
 
 	}
 }

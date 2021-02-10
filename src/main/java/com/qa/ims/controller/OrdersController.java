@@ -69,13 +69,6 @@ public class OrdersController implements CrudController<Orders> {
 		
 		}
 				
-//		LOGGER.info("Please enter the ID of the item you would like to add to your order");
-//		Long itemID = utils.getLong();
-//		Orders order = ordersDAO.update(new Orders(orderID, itemID));
-//		LOGGER.info("Order Updated");
-//		return order;
-//			}}
-	
 
 	@Override
 	public int delete() {

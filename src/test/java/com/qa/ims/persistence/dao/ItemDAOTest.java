@@ -38,8 +38,8 @@ public class ItemDAOTest {
 
 	@Test
 	public void testRead() {
-		final long item_id = 1L;
-		assertEquals(new Items(item_id, "tennis racket", 40L), DAO.read(item_id));
+		final long itemID = 1L;
+		assertEquals(new Items(itemID, "tennis racket", 40L), DAO.read(itemID));
 	}
 
 	@Test

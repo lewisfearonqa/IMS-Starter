@@ -12,116 +12,89 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.qa.ims.controller.CustomerController;
-import com.qa.ims.controller.ItemsController;
 import com.qa.ims.controller.OrdersController;
-import com.qa.ims.persistence.dao.CustomerDAO;
-import com.qa.ims.persistence.dao.ItemsDAO;
 import com.qa.ims.persistence.dao.OrdersDAO;
-import com.qa.ims.persistence.domain.Customer;
-import com.qa.ims.persistence.domain.Items;
 import com.qa.ims.persistence.domain.Orders;
 import com.qa.ims.utils.Utils;
 
-	@RunWith(MockitoJUnitRunner.class)
-	
-	public class OrdersControllerTest {
-	
-		@Mock
-		private Utils utils;
+@RunWith(MockitoJUnitRunner.class)
 
-		@Mock
-		private OrdersDAO dao;
+public class OrdersControllerTest {
 
+	@Mock
+	private Utils utils;
 
-		@InjectMocks
-		private OrdersController controller;
+	@Mock
+	private OrdersDAO dao;
 
-		@Test
-		public void testCreate() {
-			final Long customer_id = 1L;
-			final Orders created = new Orders(customer_id);
+	@InjectMocks
+	private OrdersController controller;
 
-			Mockito.when(utils.getLong()).thenReturn(customer_id);
-			Mockito.when(dao.create(created)).thenReturn(created);
+	@Test
+	public void testCreate() {
+		final Long customerID = 1L;
+		final Orders created = new Orders(customerID);
 
-			assertEquals(created, controller.create());
+		Mockito.when(utils.getLong()).thenReturn(customerID);
+		Mockito.when(dao.create(created)).thenReturn(created);
 
-			Mockito.verify(utils, Mockito.times(1)).getLong();
-			Mockito.verify(dao, Mockito.times(1)).create(created);
-		}
+		assertEquals(created, controller.create());
 
-		@Test
-		public void testReadAll() {
-			List<Orders> orders = new ArrayList<>();
-			orders.add(new Orders(1L));
+		Mockito.verify(utils, Mockito.times(1)).getLong();
+		Mockito.verify(dao, Mockito.times(1)).create(created);
+	}
 
-			Mockito.when(dao.readAll()).thenReturn(orders);
+	@Test
+	public void testReadAll() {
+		List<Orders> orders = new ArrayList<>();
+		orders.add(new Orders(1L));
 
-			assertEquals(orders, controller.readAll());
+		Mockito.when(dao.readAll()).thenReturn(orders);
 
-			Mockito.verify(dao, Mockito.times(1)).readAll();
-		}
+		assertEquals(orders, controller.readAll());
 
-		@Test
-		public void testUpdate() {
-			Orders updated = new Orders(1L, 1L);
+		Mockito.verify(dao, Mockito.times(1)).readAll();
+	}
 
-			Mockito.when(this.utils.getLong()).thenReturn(1L);
-			Mockito.when(this.utils.getLong()).thenReturn(1L);
-			Mockito.when(this.dao.update(updated)).thenReturn(updated);
+	@Test
+	public void testUpdate() {
+		final Long orderID = 1L;
+		final Long itemID = 1L;
+		final Orders addItemToOrder = new Orders(orderID, itemID);
+		final Orders removeItemOrder = new Orders(orderID, itemID);
 
-			assertEquals(updated, this.controller.update());
+		Mockito.when(this.utils.getLong()).thenReturn(1L, addItemToOrder.getOrderID());
+		Mockito.when(this.dao.update(addItemToOrder)).thenReturn(addItemToOrder);
 
-			Mockito.verify(this.utils, Mockito.times(1)).getLong();
-			Mockito.verify(this.utils, Mockito.times(1)).getString();
-			Mockito.verify(this.dao, Mockito.times(1)).update(updated);
-		}
-		@Test
-		public void testAddItemToOrder() {
-			final Long orderID = 1L;
-			final Long itemID =  1L;
-			final Orders created = new Orders(orderID, itemID);
+		assertEquals(addItemToOrder, this.controller.update());
 
-			Mockito.when(utils.getLong()).thenReturn(orderID);
-			Mockito.when(utils.getLong()).thenReturn(itemID);
-			Mockito.when(dao.create(created)).thenReturn(created);
+		Mockito.verify(this.utils, Mockito.times(2)).getLong();
+		Mockito.verify(this.utils, Mockito.times(1)).getLong();
+		Mockito.verify(this.dao, Mockito.times(1)).update(addItemToOrder);
 
-			assertEquals(created, controller.create());
+		Mockito.when(utils.getLong()).thenReturn(orderID);
+		Mockito.when(dao.update(removeItemOrder)).thenReturn(removeItemOrder);
 
-			Mockito.verify(utils, Mockito.times(1)).getLong();
-			Mockito.verify(utils, Mockito.times(1)).getLong();
-			Mockito.verify(dao, Mockito.times(1)).create(created);
-		}
-		
-		@Test
-		public void testRemoveItemOrder() {
-			final long itemID = 1L;
+		assertEquals(1L, this.controller.update());
 
-			Mockito.when(this.utils.getLong()).thenReturn(1L);
-			Mockito.when(this.utils.getLong()).thenReturn(1L);
-			Mockito.when(this.dao.delete(itemID)).thenReturn((int) 1L);
-
-			assertEquals(1L, this.controller.delete());
-
-			Mockito.verify(this.utils, Mockito.times(1)).getLong();
-			Mockito.verify(this.utils, Mockito.times(1)).getLong();
-			Mockito.verify(this.dao, Mockito.times(1)).delete(itemID);
-		}
-
-		@Test
-		public void testDelete() {
-			final long orderID = 1L;
-
-			Mockito.when(utils.getLong()).thenReturn(orderID);
-			Mockito.when(dao.delete(orderID)).thenReturn((int) 1L);
-
-			assertEquals(1L, this.controller.delete());
-
-			Mockito.verify(utils, Mockito.times(1)).getLong();
-			Mockito.verify(dao, Mockito.times(1)).delete(orderID);
-		}
+		Mockito.verify(utils, Mockito.times(1)).getLong();
+		Mockito.verify(dao, Mockito.times(1)).update(removeItemOrder);
 
 	}
+
+	@Test
+	public void testDelete() {
+		final long orderID = 1L;
+
+		Mockito.when(utils.getLong()).thenReturn(orderID);
+		Mockito.when(dao.delete(orderID)).thenReturn((int) 1L);
+
+		assertEquals(1L, this.controller.delete());
+
+		Mockito.verify(utils, Mockito.times(1)).getLong();
+		Mockito.verify(dao, Mockito.times(1)).delete(orderID);
+	}
+
+}
 
 
