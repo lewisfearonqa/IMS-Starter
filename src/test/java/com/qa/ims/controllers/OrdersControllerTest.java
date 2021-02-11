@@ -14,7 +14,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.qa.ims.controller.OrdersController;
 import com.qa.ims.persistence.dao.OrdersDAO;
-import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Items;
 import com.qa.ims.persistence.domain.Orders;
 import com.qa.ims.utils.Utils;
@@ -63,6 +62,7 @@ public class OrdersControllerTest {
 		List<Items> items = new ArrayList<>();
 		Orders updated = new Orders(1L, 1L, items);
 		Mockito.when(this.utils.getLong()).thenReturn(1L);
+		Mockito.when(this.utils.getString()).thenReturn("Add");
 		Mockito.when(this.utils.getLong()).thenReturn(1L);
 		Mockito.when(this.dao.update(updated)).thenReturn(updated);
 
@@ -72,12 +72,6 @@ public class OrdersControllerTest {
 		Mockito.verify(this.utils, Mockito.times(2)).getLong();
 		Mockito.verify(this.dao, Mockito.times(1)).update(updated);
 	}
-
-
-		
-		
-
-	
 
 	@Test
 	public void testDelete() {
@@ -93,5 +87,4 @@ public class OrdersControllerTest {
 	}
 
 }
-
 
