@@ -15,7 +15,7 @@ import com.qa.ims.utils.DBUtils;
 
 public class OrdersDAOTest {
 
-	private final OrdersDAO DAO = new OrdersDAO(new ItemsDAO(), new CustomerDAO());
+	private final OrdersDAO DAO = new OrdersDAO(new ItemsDAO());
 	private Orders testOrders;
 
 	@Before
@@ -69,7 +69,7 @@ public class OrdersDAOTest {
 		assertEquals(testOrders, DAO.addItemToOrder(1L, 1L));
 
 	}
-	
+
 	@Test
 	public void testRemoveItemOrder() {
 		List<Items> items = new ArrayList<>();

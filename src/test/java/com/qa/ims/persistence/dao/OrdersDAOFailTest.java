@@ -14,7 +14,7 @@ import com.qa.ims.utils.DBUtils;
 
 public class OrdersDAOFailTest {
 
-	private final OrdersDAO DAO = new OrdersDAO(new ItemsDAO(), new CustomerDAO());
+	private final OrdersDAO DAO = new OrdersDAO(new ItemsDAO());
 
 	@Before
 	public void setup() {

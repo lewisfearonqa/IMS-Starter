@@ -24,15 +24,13 @@ public class IMS {
 	private final OrdersController orders;
 	private final ItemsController items;
 
-	
-
 	public IMS() {
 		this.utils = new Utils();
 		final CustomerDAO custDAO = new CustomerDAO();
 		this.customers = new CustomerController(custDAO, utils);
 		final ItemsDAO itDAO = new ItemsDAO();
 		this.items = new ItemsController(itDAO, utils);
-		this.orders = new OrdersController(new OrdersDAO(itDAO, custDAO), utils);
+		this.orders = new OrdersController(new OrdersDAO(itDAO), utils);
 
 	}
 
@@ -73,7 +71,7 @@ public class IMS {
 				break;
 			}
 
-			LOGGER.info(() ->"What would you like to do with " + domain.name().toLowerCase() + ":");
+			LOGGER.info(() -> "What would you like to do with " + domain.name().toLowerCase() + ":");
 
 			Action.printActions();
 			Action action = Action.getAction(utils);
