@@ -28,7 +28,7 @@ public class OrdersDAO implements Dao<Orders> {
 
 	}
 
-	public OrdersDAO(ItemsDAO itemsDao, CustomerDAO customerDAO) {
+	public OrdersDAO(ItemsDAO itemsDao) {
 		super();
 		this.itemsDao = itemsDao;
 
