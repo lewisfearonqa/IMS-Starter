@@ -56,10 +56,10 @@ public class OrdersControllerTest {
 		Mockito.verify(dao, Mockito.times(1)).readAll();
 	}
 
-	@Test
-	public void testUpdate() {
-
-	}
+//	@Test
+//	public void testUpdate() {
+//
+//	}
 
 	@Test
 	public void testDelete() {

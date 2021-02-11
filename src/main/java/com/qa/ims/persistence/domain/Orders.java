@@ -55,7 +55,7 @@ public class Orders {
 
 	@Override
 	public String toString() {
-		return ("orderID:" + orderID + " "  + "customerID:" + customerID +" " +", items:" + items);
+		return ("orderID:"+orderID+" "+"customerID:"+customerID +" "+"items:"+items);
 		
 	}
 
@@ -65,6 +65,7 @@ public class Orders {
 		int result = 1;
 		result = prime * result + ((orderID == null) ? 0 : orderID.hashCode());
 		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
+		result = prime * result + ((items == null) ? 0 : items.hashCode());
 		return result;
 	}
 
