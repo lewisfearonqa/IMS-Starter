@@ -74,19 +74,8 @@ public class OrdersControllerTest {
 	}
 
 
-//		assertEquals(addItemToOrder, this.controller.update());
-//
-//		Mockito.verify(this.utils, Mockito.times(2)).getLong();
-//		Mockito.verify(this.utils, Mockito.times(1)).getLong();
-//		Mockito.verify(this.dao, Mockito.times(1)).update(addItemToOrder);
-//
-//		Mockito.when(utils.getLong()).thenReturn(orderID);
-//		Mockito.when(dao.update(removeItemOrder)).thenReturn(removeItemOrder);
-//
-//		assertEquals(1L, this.controller.update());
-//
-//		Mockito.verify(utils, Mockito.times(1)).getLong();
-//		Mockito.verify(dao, Mockito.times(1)).update(removeItemOrder);
+		
+		
 
 	
 
