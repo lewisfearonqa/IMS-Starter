@@ -72,12 +72,12 @@ public class ItemsDAO implements Dao<Items> {
 	}
 
 	@Override
-	public Items create(Items Items) {
+	public Items create(Items items) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("INSERT INTO items(`item_name`, price) VALUES (?, ?)");) {
-			statement.setString(1, Items.getItemName());
-			statement.setLong(2, Items.getItemPrice());
+			statement.setString(1, items.getItemName());
+			statement.setLong(2, items.getItemPrice());
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
@@ -88,15 +88,15 @@ public class ItemsDAO implements Dao<Items> {
 	}
 
 	@Override
-	public Items update(Items Items) {
+	public Items update(Items items) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("UPDATE items SET item_name = ?, price = ? WHERE item_id = ?");) {
-			statement.setString(1, Items.getItemName());
-			statement.setLong(2, Items.getItemPrice());
-			statement.setLong(3, Items.getItem_ID());
+			statement.setString(1, items.getItemName());
+			statement.setLong(2, items.getItemPrice());
+			statement.setLong(3, items.getItemID());
 			statement.executeUpdate();
-			return read(Items.getItem_ID());
+			return read(items.getItemID());
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
@@ -118,9 +118,8 @@ public class ItemsDAO implements Dao<Items> {
 		return 0;
 
 	}
-	
-	}
-	
+
+}
 
 
 

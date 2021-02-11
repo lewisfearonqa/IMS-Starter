@@ -18,7 +18,6 @@ import com.qa.ims.utils.DBUtils;
 public class OrdersDAO implements Dao<Orders> {
 	public static final Logger LOGGER = LogManager.getLogger();
 	private ItemsDAO itemsDao;
-	private CustomerDAO customerDAO;
 
 	@Override
 	public Orders modelFromResultSet(ResultSet resultSet) throws SQLException {
@@ -28,12 +27,11 @@ public class OrdersDAO implements Dao<Orders> {
 		return new Orders(orderID, customerID, item);
 
 	}
-	
+
 	public OrdersDAO(ItemsDAO itemsDao, CustomerDAO customerDAO) {
 		super();
 		this.itemsDao = itemsDao;
-		this.customerDAO = customerDAO;
-		
+
 	}
 
 	private List<Items> readItems(Long id) {
@@ -165,10 +163,6 @@ public class OrdersDAO implements Dao<Orders> {
 		}
 		return 0;
 	}
-
-	
-
-	
 
 }
 

@@ -18,11 +18,11 @@ public class Items {
 		this.itemPrice = itemPrice;
 	}
 
-	public Long getItem_ID() {
+	public Long getItemID() {
 		return itemID;
 	}
 
-	public void setItem_ID(Long itemID) {
+	public void setItemID(Long itemID) {
 		this.itemID = itemID;
 	}
 
