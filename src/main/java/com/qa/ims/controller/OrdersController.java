@@ -56,8 +56,8 @@ public class OrdersController implements CrudController<Orders> {
 			break;
 		case "Delete":
 			LOGGER.info("Please enter the item ID");
-			Long itemId = utils.getLong();
-			orderUpdate = this.ordersDAO.removeItemOrder(orderID, itemId);
+			Long itemI = utils.getLong();
+			orderUpdate = this.ordersDAO.removeItemOrder(orderID, itemI);
 			LOGGER.info("The item has been deleted and your order has been update");
 			break;
 		default:

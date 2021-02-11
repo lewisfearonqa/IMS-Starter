@@ -66,8 +66,16 @@ public class OrdersDAOTest {
 		List<Items> items = new ArrayList<>();
 		items.add(new Items(1L, "tennis racket", 40L));
 		testOrders = new Orders(1L, 1L, items);
-		this.testOrders.getItems().add(new Items(1L, "tennis racket", 40L));
 		assertEquals(testOrders, DAO.addItemToOrder(1L, 1L));
+
+	}
+	
+	@Test
+	public void testRemoveItemOrder() {
+		List<Items> items = new ArrayList<>();
+		items.clear();
+		testOrders = new Orders(1L, 1L, items);
+		assertEquals(testOrders, DAO.removeItemOrder(1L, 1L));
 
 	}
 
