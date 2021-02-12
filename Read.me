@@ -1,0 +1,64 @@
+Software requiremnts -
+Java -jdk-14.0.2
+Local SQL database
+Google instace 
+Maven
+Gitbash
+junit 
+Sonar 
+
+To use the application within gitbash you'll need to open gitbash within the target folder. Enter java -jar ims-0.0.1-with-dependencies-jar.
+This will allow you to have use the application within gitbash.
+
+You will be able to see the main menu of the application with Customer, Item, Order and Stop.
+Entering customer and pressing enter will take you to a new menu. This menu will have create, read, update and delete. These are the four functions that you can do with either customer, order and item.
+To create a customer you will need to enter create into the command line. The application will now want you to input your first name and surname. Once these values have been inputted you have created yourself as a customer within the database.
+To get your customer_id you can input teh function read. All the customers within the database will be printed in the console.
+Here you will be able to see your customer_id. Having this id will allow you to create an order.
+If you wish to update a customer you will need to enter update and you will be required to enter the new first name and surname. Updating a customer won't change the customer_id it will only change the first name and surname.
+To delete a customer from the database. You will need to enter delete into the console. 
+You will need to enter the customer_id of the customer you wish to delete. 
+Once you have finished creating, updating, reading and deleting customers you can now input return and you'll be returned to the main application menu.
+
+Now you are back at the main menu, enter item and you'll be taken to the to the CRUD functions for item.
+To create an item you will need to input create.
+You'll need to input item name and the price of the item within the console. This will create an item within the database.
+Use the read function to see all of the items that are within the database. Here you'll be able to see the item_id. You'll need the item_id of the item you'll want to add to an order for later on.
+To update an item it will be similar to updating a customer. When you entered update and pressed enter the console will want you to input the new name and price of item.
+Again with updating the item you will only be changing the item name and price. The item_id will be the same number.
+To delete an item you will be going through the same process as deleting a customer. You'll need to input the item_od of the item that you want to delete from the database.
+Once you have finished creating, updating, reading and deleting items, you can now input return which will take you back to the main menu.
+
+Now back at the main menu you can now create, delete, update and read orders. 
+Inputing order will take you through to the order option menu.
+To create an order just enter create and you'll be required to enter your customer_id.
+This will create an empty order with your customer_id.
+Using read will print all orders that are within the database.
+You will need the order_id for adding and deleting an item from an order.
+To add an item to a order you will need to use the update function. 
+You will firstly need to input your order_id.
+This will then need you to input either Add or Delete.
+When you enter Add you'll be required to enter your order_id and then the id of the item_id that you wish to order.
+If you enter read, you'll be be shown all the orders within the database showing order_id, customer_id, item_id and item price.
+To delete an item from an order you will need to input update again.
+You will again need to enter the order_id of the order you want to update.
+This will bring up the Add or Delete options.
+After entering delete you will be requried to input the item_id of the the item you wish to delete.
+This will then delete the item from that specific order.
+To delete a whole order, it will be like deleting customers and orders.
+Once you have inputted delete you'll need to enter the order_id id the order you would like delete.
+Once you have finished with orders enter return to return to the main menu.
+When your back at the main menu you can input stop to stop using the application and end the session.
+
+Testing -
+I have set up all the tests that you will need to test all of the methods within the domain and dao packages. To test these you can run the test coverage using Junit.
+To do this test coverage you need to right click and go down to coverage as and click Junit.
+This will test the CRUD methods within these classes and will either highlight green or red. Green for passed and red for failed.
+These tests are making sure that the methods are doing what there meant to with creating, reading, updating and deleting either a customer, order or item.
+
+You can also use sonar to test the coverage as well. With sonar it will also check code smells and bugs within the code. 
+
+
+
+
+
